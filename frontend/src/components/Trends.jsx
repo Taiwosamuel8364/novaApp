@@ -19,7 +19,7 @@ const Trends = () => {
       try {
         const token = localStorage.getItem('token');
         if (!token) {
-          navigate('/api/auth/login');
+          navigate('/login');
           return;
         }
 
@@ -43,7 +43,7 @@ const Trends = () => {
       } catch (err) {
         if (err.response?.status === 401) {
           localStorage.removeItem('token');
-          navigate('/api/auth/login');
+          navigate('/login');
         }
         setError(err.response?.data?.message || 'Error fetching data');
       } finally {
@@ -68,8 +68,9 @@ const Trends = () => {
             <input type="text" placeholder="Search trends..." />
           </div>
           <div className="user-profile">
-            <span>{user?.name}</span>
-            <FaUser />
+            <span className="welcome">Hi, </span>
+            <span>{user?.username}</span>
+            <FaUser className="user-icon" />
           </div>
         </header>
         

@@ -36,9 +36,16 @@ const authController = {
         { expiresIn: '24h' }
       );
 
+      // Set cookie
+      res.cookie('token', token, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: 'strict',
+        maxAge: 24 * 60 * 60 * 1000 // 24 hours
+      });
+
       res.status(201).json({
         success: true,
-        token,
         userId: user._id
       });
     } catch (error) {
@@ -80,15 +87,30 @@ const authController = {
         { expiresIn: '24h' }
       );
 
+      // Set cookie
+      res.cookie('token', token, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: 'strict',
+        maxAge: 24 * 60 * 60 * 1000 // 24 hours
+      });
+
       res.json({
         success: true,
-        token,
         userId: user._id,
         redirect: '/api/trends' // Add redirect URL
       });
     } catch (error) {
       next(error);
     }
+  },
+
+  logout: async (req, res) => {
+    res.clearCookie('token');
+    res.json({
+      success: true,
+      message: 'Logged out successfully'
+    });
   }
 };
 

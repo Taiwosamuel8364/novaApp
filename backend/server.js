@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
+const cookieParser = require('cookie-parser');
 require('dotenv').config();
 
 const app = express();
@@ -13,6 +14,7 @@ const trendRoutes = require('./routes/trendRoutes');
 const errorHandler = require('./middleware/errorHandler');
 
 // Middleware
+app.use(cookieParser());
 app.use(cors({
   origin: 'http://localhost:3000',
   methods: ['GET', 'POST', 'PUT', 'DELETE'],

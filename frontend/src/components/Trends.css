@@ -40,6 +40,29 @@
   display: flex;
   align-items: center;
   gap: 10px;
+  padding: 8px 16px;
+  background: #f5f5f5;
+  border-radius: 20px;
+}
+
+.user-profile span {
+  font-weight: 500;
+  color: #333;
+}
+
+.user-profile .welcome {
+  color: #333;
+  font-family: Space Grotesk;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 100%;
+  letter-spacing: 6%;
+  
+}
+
+.user-icon {
+  color: #00BCD7;
+  font-size: 1.2rem;
 }
 
 .trends-body {

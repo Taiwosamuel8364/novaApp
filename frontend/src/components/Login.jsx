@@ -16,15 +16,12 @@ const Login = () => {
     e.preventDefault();
     setError(null);
     try {
-      const response = await axios.post('/api/auth/login', formData);
-      localStorage.setItem('token', response.data.token);
+      const response = await axios.post('/api/auth/login', formData, {
+        withCredentials: true
+      });
       navigate(response.data.redirect || '/trends');
     } catch (err) {
       setError(err.response?.data || { message: 'Login failed' });
-      if (err.response?.data?.field) {
-        const input = document.querySelector(`[name="${err.response.data.field}"]`);
-        if (input) input.focus();
-      }
     }
   };
 

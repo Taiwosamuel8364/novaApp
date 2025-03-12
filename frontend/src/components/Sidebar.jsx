@@ -29,8 +29,8 @@ const Sidebar = () => {
       </nav>
       
       <div className="sidebar-footer">
-        <Link to="/login" className="login-link">
-          <FaSignInAlt /> <span>Login</span>
+        <Link to="/api/auth/logout" className="login-link">
+          <FaSignInAlt /> <span>Logout</span>
         </Link>
       </div>
     </aside>
