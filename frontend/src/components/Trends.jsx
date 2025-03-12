@@ -15,20 +15,24 @@ const Trends = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
-    if (!token) {
-      navigate('/api/auth/login');
-      return;
-    }
-
     const fetchData = async () => {
       try {
-        const headers = { Authorization: `Bearer ${token}` };
+        const token = localStorage.getItem('token');
+        if (!token) {
+          navigate('/api/auth/login');
+          return;
+        }
+
+        const config = {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        };
 
         const [trendsResponse, topicsResponse, userResponse] = await Promise.all([
-          axios.get('/api/trends'),
-          axios.get('/api/trends/trending'),
-          token ? axios.get('/api/users/me', { headers }) : Promise.resolve({ data: null })
+          axios.get('/api/trends', config),
+          axios.get('/api/trends/trending', config),
+          axios.get('/api/users/me', config)
         ]);
 
         setTrends(trendsResponse.data.data);

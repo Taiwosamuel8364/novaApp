@@ -1,3 +1,4 @@
+const User = require('../models/user');
 const UserService = require('../services/userService');
 
 const userController = {
@@ -34,7 +35,6 @@ const userController = {
 
   getCurrentUser: async (req, res, next) => {
     try {
-      // req.user is already populated by auth middleware
       res.json({
         success: true,
         data: req.user
