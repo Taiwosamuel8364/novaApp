@@ -7,6 +7,7 @@ import Signup from './components/Signup';
 import Trends from './components/Trends';
 import PrivateRoute from './components/PrivateRoute';
 import Profile from './components/Profile';
+import NotFound from './components/NotFound';
 
 const App = () => {
   return (
@@ -31,6 +32,7 @@ const App = () => {
           </PrivateRoute>
         } 
       />
+            <Route path="*" element={<NotFound />} />
     </Routes>
   );
 };

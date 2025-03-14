@@ -48,6 +48,15 @@ app.use('/api/users', userRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/trends', trendRoutes);
 
+// 404 handler - must be before error handler
+app.use((req, res, next) => {
+  res.status(404).json({
+    success: false,
+    error: 'Not Found',
+    message: 'The requested resource was not found'
+  });
+});
+
 // Error handling middleware should be last
 app.use(errorHandler);
 

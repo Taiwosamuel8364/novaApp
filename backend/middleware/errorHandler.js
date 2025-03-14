@@ -31,6 +31,14 @@ const errorHandler = (err, req, res, next) => {
     });
   }
 
+  if (err.status === 404) {
+    return res.status(404).json({
+      success: false,
+      error: 'Not Found',
+      message: err.message || 'Resource not found'
+    });
+  }
+
   res.status(500).json({
     success: false,
     error: 'Server Error',
