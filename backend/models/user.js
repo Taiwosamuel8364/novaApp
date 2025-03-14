@@ -46,6 +46,11 @@ const userSchema = new mongoose.Schema({
       message: '{VALUE} is not a valid field of interest'
     }
   },
+  bio: {
+    type: String,
+    trim: true,
+    maxlength: [500, 'Bio cannot exceed 500 characters']
+  },
   profileInfo: {
     firstName: String,
     lastName: String,
@@ -74,6 +79,10 @@ const userSchema = new mongoose.Schema({
   lastUpdated: { 
     type: Date, 
     default: Date.now 
+  },
+  profileUpdatedAt: {
+    type: Date,
+    default: Date.now
   }
 }, {
   timestamps: true
@@ -82,6 +91,14 @@ const userSchema = new mongoose.Schema({
 // Add pre-save middleware to update lastUpdated
 userSchema.pre('save', function(next) {
   this.lastUpdated = Date.now();
+  next();
+});
+
+// Add pre-save middleware for profile updates
+userSchema.pre('save', function(next) {
+  if (this.isModified('bio') || this.isModified('fieldOfInterest')) {
+    this.profileUpdatedAt = Date.now();
+  }
   next();
 });
 

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import Sidebar from './Sidebar';
 import SkeletonLoader from './SkeletonLoader';
 import { FaSearch, FaUser } from 'react-icons/fa';
@@ -67,11 +67,11 @@ const Trends = () => {
             <FaSearch />
             <input type="text" placeholder="Search trends..." />
           </div>
-          <div className="user-profile">
+          <Link to="/profile" className="user-profile">
             <span className="welcome">Hi, </span>
             <span>{user?.username}</span>
             <FaUser className="user-icon" />
-          </div>
+          </Link>
         </header>
         
         <div className="trends-body">

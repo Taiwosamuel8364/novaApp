@@ -6,6 +6,7 @@ import Login from './components/Login';
 import Signup from './components/Signup';
 import Trends from './components/Trends';
 import PrivateRoute from './components/PrivateRoute';
+import Profile from './components/Profile';
 
 const App = () => {
   return (
@@ -19,6 +20,14 @@ const App = () => {
         element={
           <PrivateRoute>
             <Trends />
+          </PrivateRoute>
+        } 
+      />
+      <Route 
+        path="/profile" 
+        element={
+          <PrivateRoute>
+            <Profile />
           </PrivateRoute>
         } 
       />
